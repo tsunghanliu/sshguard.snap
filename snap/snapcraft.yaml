@@ -1,0 +1,52 @@
+name: sshguard-robertliu
+version: '2.0.0'
+summary: Protects from brute force attacks against ssh
+description: |
+  sshguard protects hosts from brute-force attacks against SSH and other services.
+  It aggregates system logs and blocks repeat offenders using one of several 
+  firewall backends, including iptables, ipfw, and pf.
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: strict
+
+apps:
+    sshguard:
+        command: bin/sshguard
+        daemon: simple
+        plugs: [firewall-control, log-observe]
+
+parts:
+    common:
+        plugin: dump
+        source: .
+        prime:
+            - bin/sshguard
+
+    sshguard:
+        plugin: autotools
+        source: https://bitbucket.org/sshguard/sshguard.git
+        source-type: git
+        source-branch: v2.0.0
+        configflags: ['--with-firewall=iptables']
+        build-packages:
+            - byacc
+            - flex
+            - python-docutils
+        prepare: |
+            echo 'patching sshguard ...'
+            patch -p1 < ../../../patches/sshguard.patch
+        install: |
+            echo 'copy sshguard.conf ...'
+            pwd
+            mkdir -p $SNAPCRAFT_PART_INSTALL/etc/sshguard
+            cp  ../../../confs/* $SNAPCRAFT_PART_INSTALL/etc/sshguard \
+            ||
+            exit 1
+        prime:
+            - libexec/sshg-blocker
+            - libexec/sshg-fw-iptables
+            - libexec/sshg-logtail
+            - libexec/sshg-parser
+            - sbin/sshguard
+            - share
+

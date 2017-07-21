@@ -1,0 +1,20 @@
+--- sshguard/src/sshguard.in.orig	2017-07-21 10:54:57.028302315 +0800
++++ sshguard/src/sshguard.in	2017-07-21 10:56:15.854967709 +0800
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ # sshguard -- protect hosts from brute-force attacks
+ 
+-libexec="@libexecdir@"
++libexec="$SNAP/@libexecdir@"
+ version="@sshguardversion@"
+ 
+ err() {
+@@ -24,7 +24,7 @@
+ }
+ 
+ # Source configuration file
+-config="@sysconfdir@/sshguard.conf"
++config="$SNAP_DATA/sshguard.conf"
+ if [ ! -r $config ]; then
+     err "Could not read '$config'"
+     err "Please configure SSHGuard."
