@@ -27,8 +27,6 @@ Each snap has a revision (`<rev>`). A snap installed from the store always has a
 
 ### Use the store
 
-**NOT ready yet**, will upload my build to the Ubuntu Store soon.
-
 ````
 $ sudo snap install --beta sshguard-robertliu
 ````
