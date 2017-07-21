@@ -11,6 +11,7 @@ parts/mlat-client/
 parts/piaware/
 parts/pkgindex-patch/
 parts/tcllauncher/
+snap/.snapcraft/
 
 # general
 *~
