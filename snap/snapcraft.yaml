@@ -1,5 +1,5 @@
 name: sshguard-robertliu
-version: '2.0.0'
+version: '2.1.0'
 summary: Protects from brute force attacks against ssh
 description: |
   sshguard protects hosts from brute-force attacks against SSH and other services.
@@ -26,7 +26,7 @@ parts:
         plugin: autotools
         source: https://bitbucket.org/sshguard/sshguard.git
         source-type: git
-        source-branch: v2.0.0
+        source-branch: v2.1.0
         configflags: ['--with-firewall=iptables']
         build-packages:
             - byacc
