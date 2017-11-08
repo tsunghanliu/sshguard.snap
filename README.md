@@ -27,8 +27,10 @@ Each snap has a revision (`<rev>`). A snap installed from the store always has a
 
 ### Use the store
 
+There are four channels used to control or track different version/revision. Please refer to the [document](https://docs.snapcraft.io/reference/channels). The following command uses the stable channel which is the default value.
+
 ````
-$ sudo snap install --beta sshguard-robertliu
+$ sudo snap install sshguard-robertliu
 ````
 
 ### Use local snap
@@ -100,3 +102,4 @@ Please use the [github issues page](https://github.com/tsunghanliu/sshguard.snap
 # Known issues
 
 * N/A
+
