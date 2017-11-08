@@ -6,7 +6,7 @@ description: |
   It aggregates system logs and blocks repeat offenders using one of several 
   firewall backends, including iptables, ipfw, and pf.
 
-grade: devel # must be 'stable' to release into candidate/stable channels
+grade: stable
 confinement: strict
 
 apps:
