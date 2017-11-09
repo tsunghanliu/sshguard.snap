@@ -46,7 +46,6 @@ parts:
             - etc
             - libexec/sshg-blocker
             - libexec/sshg-fw-iptables
-            - libexec/sshg-logtail
             - libexec/sshg-parser
             - sbin/sshguard
             - share
