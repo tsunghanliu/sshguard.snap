@@ -48,7 +48,7 @@ These interfaces **MUST** be correctly configured, otherwise the services will n
 ````
 $ sudo snap connect sshguard-robertliu:firewall-control
 $ sudo snap connect sshguard-robertliu:log-observe
-$ sudo systemctl restart snap.sshguard-robertliu.sshguard.service
+$ sudo snap restart sshguard-robertliu
 ````
 
 ## configure sshguard
