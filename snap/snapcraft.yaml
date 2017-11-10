@@ -6,6 +6,12 @@ description: |
   It aggregates system logs and blocks repeat offenders using one of several 
   firewall backends, including iptables, ipfw, and pf.
 
+    This snap does not have the capability to auto-connect the required
+    interfaces. Please use the following commands to do so:
+      $ sudo snap connect sshguard-robertliu:firewall-control
+      $ sudo snap connect sshguard-robertliu:log-observe
+      $ sudo snap restart sshguard-robertliu
+
 grade: stable
 confinement: strict
 
