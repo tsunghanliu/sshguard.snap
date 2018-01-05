@@ -10,9 +10,9 @@ Although sshguard supports ipfw, pf and other firewall backends, I only enable t
 
 To build the snap, you have to use *snapcraft*. Read the official [document](http://snapcraft.io/docs/build-snaps/) for the details. This command will produce a file named `sshguard_<ver>_<arch>.snap`. `<ver>` means the version number and `<arch>` stands for the architecture of target machines.
 
-````
+```
 $ snapcraft snap
-````
+```
 
 # Installation
 
@@ -29,27 +29,27 @@ Each snap has a revision (`<rev>`). A snap installed from the store always has a
 
 There are four channels used to control or track different version/revision. Please refer to the [document](https://docs.snapcraft.io/reference/channels). The following command uses the stable channel which is the default value.
 
-````
+```
 $ sudo snap install sshguard-robertliu
-````
+```
 
 ### Use local snap
 
 Upload the snap file to your target machine then install it.
 
-````
+```
 $ sudo snap install --dangerous sshguard-robertliu_<ver>_<arch>.snap
-````
+```
 
 ## configure interfaces
 
 These interfaces **MUST** be correctly configured, otherwise the services will not start successfully.
 
-````
+```
 $ sudo snap connect sshguard-robertliu:firewall-control
 $ sudo snap connect sshguard-robertliu:log-observe
 $ sudo snap restart sshguard-robertliu
-````
+```
 
 ## configure sshguard
 
@@ -60,40 +60,40 @@ Please check the [official document](https://www.sshguard.net/docs/) to understa
 
 The whitelist is placed at `/var/snap/sshguard-robertliu/<rev>/whitelist`.
 
-````
+```
 $ sudo vi /var/snap/sshguard-robertliu/<rev>/whitelist
 # edit and save it
-````
+```
 
 # Backup, upgrade and restore
 
 Configuration files and log files are store at `/var/snap/sshguard-robertliu/<rev>/`, To modify or backup your configurations, you can backup the whole directory, or just pick some of files.
-````
+```
 $ sudo cp /var/snap/sshguard-robertliu/<rev>/sshguard.conf $HOME
 $ sudo cp /var/snap/sshguard-robertliu/<rev>/whitelist $HOME
-````
+```
 
 Snapd will refresh snaps automatically by default. If you want to do it manually, use this command:
-````
+```
 $ sudo snap refresh sshguard-robertliu
-````
+```
 
 To restore the settings, copy the file to the `/var/snap/sshguard/<rev>/`
-````
+```
 # restore configuration files
 $ sudo cp $HOME/sshguard.conf /var/snap/sshguard-robertliu/<rev>/
 $ sudo cp $HOME/whitelist /var/snap/sshguard-robertliu/<rev>/
 # restart services
 $ sudo systemctl restart snap.sshguard-robertliu.sshguard.service
-````
+```
 
 # Remove
 
 To remove this snap
 
-````
+```
 $ sudo snap remove sshguard-robertliu
-````
+```
 
 # Bug reports and feedback
 
