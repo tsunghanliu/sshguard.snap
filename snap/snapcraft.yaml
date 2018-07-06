@@ -25,8 +25,11 @@ parts:
     common:
         plugin: dump
         source: .
+        organize:
+            confs/: etc/sshguard/
         prime:
-            - bin/sshguard
+            - bin
+            - etc
 
     sshguard:
         plugin: autotools
@@ -42,14 +45,7 @@ parts:
             echo 'patching sshguard ...'
             patch -p1 < ../../../patches/sshguard.patch
             snapcraftctl build
-            echo 'copy sshguard.conf ...'
-            pwd
-            mkdir -p $SNAPCRAFT_PART_INSTALL/etc/sshguard
-            cp  ../../../confs/* $SNAPCRAFT_PART_INSTALL/etc/sshguard \
-            ||
-            exit 1
         prime:
-            - etc
             - libexec/sshg-blocker
             - libexec/sshg-fw-iptables
             - libexec/sshg-logtail
