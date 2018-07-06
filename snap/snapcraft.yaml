@@ -38,10 +38,10 @@ parts:
             - byacc
             - flex
             - python-docutils
-        prepare: |
+        override-build: |
             echo 'patching sshguard ...'
             patch -p1 < ../../../patches/sshguard.patch
-        install: |
+            snapcraftctl build
             echo 'copy sshguard.conf ...'
             pwd
             mkdir -p $SNAPCRAFT_PART_INSTALL/etc/sshguard
