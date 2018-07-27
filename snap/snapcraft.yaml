@@ -43,7 +43,8 @@ parts:
             - python-docutils
         override-build: |
             echo 'patching sshguard ...'
-            patch -p1 < ../../../patches/sshguard.patch
+            sed -i 's/libexec="@libexecdir@"/libexec="\$SNAP\/@libexecdir@"/' src/sshguard.in
+            sed -i 's/config="@sysconfdir@\/sshguard.conf"/config="\$SNAP_DATA\/sshguard.conf"/' src/sshguard.in
             snapcraftctl build
         prime:
             - libexec/sshg-blocker
