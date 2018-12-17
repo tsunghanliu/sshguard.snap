@@ -1,5 +1,5 @@
 name: sshguard-robertliu
-version: '2.2.0'
+version: '2.3.0+0'
 summary: Protects from brute force attacks against ssh
 description: |
   sshguard protects hosts from brute-force attacks against SSH and other services.
@@ -35,15 +35,15 @@ parts:
         plugin: autotools
         source: https://bitbucket.org/sshguard/sshguard.git
         source-type: git
-        source-branch: v2.2.0
-        configflags: ['--with-firewall=iptables']
+        source-branch: v2.3.0
+        source-depth: 1
         build-packages:
             - byacc
             - flex
             - python-docutils
         override-build: |
             echo 'patching sshguard ...'
-            sed -i 's/libexec="@libexecdir@"/libexec="\$SNAP\/@libexecdir@"/' src/sshguard.in
+            sed -i 's/libexec="@libexecdir@"/libexec="\$SNAP@libexecdir@"/' src/sshguard.in
             sed -i 's/config="@sysconfdir@\/sshguard.conf"/config="\$SNAP_DATA\/sshguard.conf"/' src/sshguard.in
             snapcraftctl build
         prime:
