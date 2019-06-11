@@ -7,6 +7,26 @@ WHITELIST="whitelist"
 
 export SSHGUARD_DEBUG=1
 
+## set the XTABLES_LIBDIR when iptables is carried
+if [ -f "$SNAP/sbin/iptables" ]; then
+	case $SNAP_ARCH in
+		amd64)
+			ARCH_TRIPLET="x86_64-linux-gnu"
+			;;
+		armhf)
+			ARCH_TRIPLET="arm-linux-gnueabihf"
+			;;
+		arm64)
+			ARCH_TRIPLET="aarch64-linux-gnu"
+			;;
+		*)
+			ARCH_TRIPLET="$SNAP_ARCH-linux-gnu"
+			;;
+	esac
+
+	export XTABLES_LIBDIR="$SNAP/usr/lib/$ARCH_TRIPLET/xtables"
+fi
+
 ## prepare configuration files
 if [ ! -f $SNAP_DATA/$CONF ]; then
 	cp $SNAP/etc/sshguard/$CONF $SNAP_DATA/$CONF
