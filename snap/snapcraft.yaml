@@ -14,6 +14,7 @@ description: |
 
 grade: stable
 confinement: strict
+base: core18
 
 apps:
     sshguard:
@@ -41,16 +42,11 @@ parts:
             - byacc
             - flex
             - python-docutils
+        stage-packages:
+            - iptables
         override-build: |
             echo 'patching sshguard ...'
             sed -i 's/libexec="@libexecdir@"/libexec="\$SNAP@libexecdir@"/' src/sshguard.in
             sed -i 's/config="@sysconfdir@\/sshguard.conf"/config="\$SNAP_DATA\/sshguard.conf"/' src/sshguard.in
             snapcraftctl build
-        prime:
-            - libexec/sshg-blocker
-            - libexec/sshg-fw-iptables
-            - libexec/sshg-logtail
-            - libexec/sshg-parser
-            - sbin/sshguard
-            - share
 
