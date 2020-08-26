@@ -30,6 +30,8 @@ fi
 ## prepare configuration files
 if [ ! -f $SNAP_DATA/$CONF ]; then
 	cp $SNAP/etc/sshguard/$CONF $SNAP_DATA/$CONF
+else
+	sed -i 's/^PID_FILE=/#PID_FILE=/' $SNAP_DATA/$CONF
 fi
 
 if [ ! -f $SNAP_DATA/$WHITELIST ]; then
