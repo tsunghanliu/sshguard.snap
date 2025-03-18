@@ -14,7 +14,7 @@ description: |
 
 grade: stable
 confinement: strict
-base: core18
+base: core22
 
 apps:
     sshguard:
@@ -41,12 +41,12 @@ parts:
         build-packages:
             - byacc
             - flex
-            - python-docutils
+            - python3-docutils
         stage-packages:
             - iptables
         override-build: |
             echo 'patching sshguard ...'
             sed -i 's/libexec="@libexecdir@"/libexec="\$SNAP@libexecdir@"/' src/sshguard.in
             sed -i 's/config="@sysconfdir@\/sshguard.conf"/config="\$SNAP_DATA\/sshguard.conf"/' src/sshguard.in
-            snapcraftctl build
+            craftctl default
 
